@@ -12,15 +12,16 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     @Override
-    public void start(Stage stage) {
-        Scene scene = new Scene(MainWindow.createBorderPane(), 640, 480);
+    public void start(Stage primaryStage) {
+        primaryStage.setTitle("FHM gRPC Client");
+        Scene scene = new Scene(MainWindow.createScene(), 640, 480);
 
         // Loading stylesheet
         String styleSheet = getClass().getResource("/css/style.css").toExternalForm();
         scene.getStylesheets().add(styleSheet);
 
-        stage.setScene(scene);
-        stage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
