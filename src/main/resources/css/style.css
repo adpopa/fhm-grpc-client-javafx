@@ -1,0 +1,15 @@
+Label {
+    -fx-padding: 10px;
+}
+
+.bg-blue {
+    -fx-background-color: #95CBCC;
+}
+
+.bg-yellow {
+    -fx-background-color: #F3D67F;
+}
+
+.bg-gold {
+    -fx-background-color: #E8B499;
+}
