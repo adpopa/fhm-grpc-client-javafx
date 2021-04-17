@@ -66,7 +66,7 @@ public class MainWindow {
         Button btnDisconnect = new Button("Disconnect from server");
         btnDisconnect.setPrefSize(200,20);
 
-        Button btnAddElements = new Button("add 3 elements");
+        Button btnAddElements = new Button("add 2 elements");
         btnAddElements.setPrefSize(200,20);
         btnAddElements.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -82,9 +82,12 @@ public class MainWindow {
     }
 
     private static void addElementsRefreshTable() {
-        generateFileEntry(3);
-        tableOfFileEntry.setItems(fileEntries);
+        generateFileEntry(2);
+        ObservableList<FileEntry> toDispList = FXCollections.observableArrayList(fileEntries);
+        FXCollections.reverse(toDispList);
+        tableOfFileEntry.setItems(toDispList);
         tableOfFileEntry.refresh();
+//        FXCollections.reverse(fileEntries);
     }
 
     private static void createTable() {
