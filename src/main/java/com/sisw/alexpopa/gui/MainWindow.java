@@ -1,5 +1,6 @@
 package com.sisw.alexpopa.gui;
 
+import com.sisw.alexpopa.gui.action.ButtonAction;
 import com.sisw.alexpopa.model.FileEntry;
 import javafx.beans.property.SimpleLongProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,9 +16,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.*;
 
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Alex Daniel Popa
@@ -61,7 +62,7 @@ public class MainWindow {
         btnStartMonitor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                ButtonAction.startMonitor();
             }
         });
 
@@ -70,7 +71,7 @@ public class MainWindow {
         btnRecorder.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                addElementsRefreshTable();
             }
         });
 
@@ -79,7 +80,7 @@ public class MainWindow {
         btnStopRecorder.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                ButtonAction.stopRecorder();
             }
         });
 
@@ -88,7 +89,7 @@ public class MainWindow {
         btnStopMonitor.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-
+                ButtonAction.stopMonitor();
             }
         });
 
@@ -101,11 +102,22 @@ public class MainWindow {
     }
 
     private static void addElementsRefreshTable() {
+        TimerTask repeatedTask = new TimerTask() {
+            public void run() {
+                ObservableList<FileEntry> listToBeAdded = FXCollections.observableArrayList(ButtonAction.recorder());
+                if(!listToBeAdded.isEmpty()) {
+                    fileEntries.addAll(listToBeAdded);
+                    ObservableList<FileEntry> toDispList = FXCollections.observableArrayList(fileEntries);
+                    FXCollections.reverse(toDispList);
+                    tableOfFileEntry.setItems(toDispList);
+                    tableOfFileEntry.refresh();
+                }
+            }
+        };
+        Timer timer = new Timer("Timer");
+        timer.scheduleAtFixedRate(repeatedTask,0,100);
+
 //        generateFileEntry(2);
-        ObservableList<FileEntry> toDispList = FXCollections.observableArrayList(fileEntries);
-        FXCollections.reverse(toDispList);
-        tableOfFileEntry.setItems(toDispList);
-        tableOfFileEntry.refresh();
 //        FXCollections.reverse(fileEntries);
     }
 
