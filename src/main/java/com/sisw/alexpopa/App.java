@@ -14,7 +14,8 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) {
         primaryStage.setTitle("FHM gRPC Client");
-        Scene scene = new Scene(MainWindow.createScene(), 640, 480);
+
+        Scene scene = new Scene(MainWindow.createScene(), 1000, 800);
 
         // Loading stylesheet
         String styleSheet = getClass().getResource("/css/style.css").toExternalForm();
