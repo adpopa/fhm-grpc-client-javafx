@@ -19,15 +19,16 @@ import java.util.List;
 public class ButtonAction {
 
     private static final Logger LOGGER = LogManager.getLogger(ButtonAction.class);
+    private static final String PATH_TO_DIR =  "./MonitoredFolder";
 
     private static MonitorServiceBlockingStub blockingStub = null;
 
     public static void startMonitor() {
         if(blockingStub == null) {
-            conn();
+            buildChannel();
         }
 
-        StartMonitorRequest request = StartMonitorRequest.newBuilder().setMsgStartMonitorRequest("./MonitoredFolder").build();
+        StartMonitorRequest request = StartMonitorRequest.newBuilder().setMsgStartMonitorRequest(PATH_TO_DIR).build();
 
         StartMonitorResponse response = blockingStub.startMonitor(request);
 
@@ -88,7 +89,7 @@ public class ButtonAction {
 
     }
 
-    private static void conn() {
+    private static void buildChannel() {
         try {
             GrpcChannelFactory grpcMonitorClient = new GrpcChannelFactory("localhost",9090);
             blockingStub = MonitorServiceGrpc.newBlockingStub(grpcMonitorClient.getChannel());

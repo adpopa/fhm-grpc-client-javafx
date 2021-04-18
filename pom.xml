@@ -114,7 +114,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.4</version>
                 <configuration>
-                    <mainClass>com.sisw.alexpopa.GuiMain</mainClass>
+                    <mainClass>com.sisw.alexpopa.gui.GuiMain</mainClass>
                 </configuration>
             </plugin>
 

@@ -1,6 +1,6 @@
-package com.sisw.alexpopa;
+package com.sisw.alexpopa.gui;
 
-import com.sisw.alexpopa.gui.MainWindow;
+import com.sisw.alexpopa.gui.scene.MainScene;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,7 +15,7 @@ public class GuiMain extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("FHM gRPC Client");
 
-        Scene scene = new Scene(MainWindow.createScene(), 1000, 800);
+        Scene scene = new Scene(MainScene.createScene(), 1000, 800);
 
         // Loading stylesheet
         String styleSheet = getClass().getResource("/css/style.css").toExternalForm();

@@ -1,4 +1,4 @@
-package com.sisw.alexpopa.gui;
+package com.sisw.alexpopa.gui.scene;
 
 import com.sisw.alexpopa.gui.action.ButtonAction;
 import com.sisw.alexpopa.model.FileEntry;
@@ -15,15 +15,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.*;
 
-import java.time.Instant;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * @author Alex Daniel Popa
  */
-public class MainWindow {
+public class MainScene {
 
     private static ObservableList<FileEntry> fileEntries;
     private static TableView<FileEntry> tableOfFileEntry;
